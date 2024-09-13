@@ -1,0 +1,6 @@
+celery
+Django
+gunicorn
+psycopg2-binary
+python-decouple
+redis
