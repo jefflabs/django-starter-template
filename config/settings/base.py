@@ -71,23 +71,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
-# Replaced the standard sqlite backend for a postgresql -> postgis database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.contrib.gis.db.backends.postgis",
-        'HOST': config("DB_HOST"),
-        "NAME": config("DB_NAME"),
-        "PORT": config("DB_PORT", cast=int),
-        "USER": config("DB_USERNAME"),
-        "PASSWORD": config("DB_PASSWORD"),
-        'CONN_MAX_AGE': 600,  # Keep connections open for 10 minutes
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 

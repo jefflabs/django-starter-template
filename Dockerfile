@@ -7,6 +7,15 @@ ENV PYTHONDONTWRITEBYTECODE 1
 WORKDIR /code
 
 COPY ./requirements.txt .
-RUN pip install -r requirements.txt
+RUN apt-get update \
+    && apt-get install -y \
+        netcat-openbsd \
+    && pip install --upgrade pip \
+    && pip install -r requirements.txt
+
+COPY ./entrypoint.sh .
+RUN chmod +x /code/entrypoint.sh
 
 COPY . .
+
+ENTRYPOINT ["/code/entrypoint.sh"]
