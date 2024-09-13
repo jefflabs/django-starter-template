@@ -5,5 +5,7 @@ services:
     build: .
     volumes:
       - .:/code
+    env_files:
+      - ./.env
     ports:
       - 8000:8000
