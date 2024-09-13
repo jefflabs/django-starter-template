@@ -10,7 +10,7 @@ This starter template consists of the following services:
 * Django app
 * PostgreSQL (actually Postgis) database
 * Redis Cache
-* Celery and Redis
+* Celery and Redis Messagebroker
 
 ## Split settings for different environments
 
@@ -28,3 +28,7 @@ An .env file that allows you to describe different environments (production and 
 
 There is a script (entrypoint.sh) to ensure Postgres is healthy befor Django is started.
 This script uses netcast.
+
+## Celery and Redis
+
+We add celery for time-intensive asynchronuous tasks that can run in the background. So that the frontend is not waiting for these user requests. Redis is used as the message broker. We use redis since it can also be used as cache.

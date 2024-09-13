@@ -11,6 +11,7 @@ services:
     ports:
       - 8000:8000
     depends_on:
+      - redis
       - db
   db:
     image: postgre:15
@@ -20,6 +21,20 @@ services:
       - POSTGRES_USER=$(DB_USERNAME)
       - POSTGRES_PASSWORD=$(DB_PASSWORD)
       - POSTGRES_DB=$(DB_NAME)
+  redis:
+    image: redis:7
+  
+  celery:
+    build: .
+    command: celery -A config worker -1 info
+    volumes:
+      - .:/code
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+      - redis
+      - web
 
 volumes:
   postgres_data:
