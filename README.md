@@ -7,7 +7,7 @@ This is a Django Dockerized Production-Ready starter template. Goals is to make 
 This starter template consists of the following services:
 
 * Django app
-* PostgreSQL (actually Postgis) database
+* PostgreSQL database
 * Redis Cache
 * Celery and Redis Messagebroker
 * Gunicorn
@@ -20,6 +20,7 @@ TODOs:
 * TODO: split .env file in a production and development file
 * TODO: create a seperate compose and entrypoint directory -> cleaner then everythin in the root
 * TODO: create seperate base, production and development requirement.txt files
+* TODO: add pgadmin4 service to docker-compose.yml
 
 ## Split settings for different environments
 
@@ -35,7 +36,7 @@ An .env file that allows you to describe different environments (production and 
 
 ## PostgreSQL Database
 
-We add a PostgreSQL (actually a PostGIS for geospatial stuff) database and an entrypoint to ensure Postgress is healthy befor Django is starterd.
+We add a PostgreSQL database and an entrypoint to ensure Postgress is healthy befor Django is starterd.
 
 The script (entrypoint.sh) is there to ensure Postgres is healthy befor Django is started. This script uses netcast.
 
