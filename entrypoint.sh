@@ -1,19 +1,20 @@
 #!/bin/sh
 
-# Script to ensure Postgres is healthy befor Django is started
-
 echo 'Waiting for postgres...'
 
-while ! nc -z $DB_HOSTNAME $DB_PORT; do
+echo "Checking connection to database at $DB_HOSTNAME:$DB_PORT..."
+
+while ! nc -zv $DB_HOSTNAME $DB_PORT; do
+    echo "Still waiting for database to be available at $DB_HOSTNAME:$DB_PORT..."
     sleep 0.1
 done
 
-echo 'PostgreSQL started'
+echo "Database is available at $DB_HOSTNAME:$DB_PORT!"
 
 echo 'Running migrations...'
-python managae.py migrate
+python manage.py migrate
 
-echo 'Collect static files...'
-python managae.py collectstatic --no-input
+echo 'Collecting static files...'
+python manage.py collectstatic --no-input
 
 exec "$@"

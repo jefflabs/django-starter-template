@@ -14,13 +14,13 @@ services:
       - redis
       - db
   db:
-    image: postgre:15
+    image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=$(DB_USERNAME)
-      - POSTGRES_PASSWORD=$(DB_PASSWORD)
-      - POSTGRES_DB=$(DB_NAME)
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
   redis:
     image: redis:7
   
