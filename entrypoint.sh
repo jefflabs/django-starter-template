@@ -4,9 +4,9 @@
 
 echo 'Waiting for postgres...'
 
-while ! nc -z $DB_HOSTNAME; do
+while ! nc -z $DB_HOSTNAME $DB_PORT; do
     sleep 0.1
-DB_HOSTNAME
+done
 
 echo 'PostgreSQL started'
 
