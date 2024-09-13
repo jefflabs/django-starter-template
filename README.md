@@ -1,6 +1,5 @@
 # django-starter-template
 
-
 ## Overview
 
 This is a Django Dockerized Production-Ready starter template. Goals is to make life eas for develoeprs so that they can focus on development and business logic, by minimizing the hassle of setup and deployment.
@@ -13,6 +12,14 @@ This starter template consists of the following services:
 * Celery and Redis Messagebroker
 * Gunicorn
 * Nginx
+
+Status: tested and works
+
+TODOs:
+
+* TODO: split .env file in a production and development file
+* TODO: create a seperate compose and entrypoint directory -> cleaner then everythin in the root
+* TODO: create seperate base, production and development requirement.txt files
 
 ## Split settings for different environments
 
