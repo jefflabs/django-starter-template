@@ -17,8 +17,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, '../', "staticfiles")
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.contrib.gis.db.backends.postgis",
-        'HOST': config("DB_HOST"),
+        # TODO: "ENGINE": "django.contrib.gis.db.backends.postgis",
+        "ENGINE": "django.db.backends.postgresql",
+        'HOST': config("DB_HOSTNAME"),
         "NAME": config("DB_NAME"),
         "PORT": config("DB_PORT", cast=int),
         "USER": config("DB_USERNAME"),

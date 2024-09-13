@@ -35,8 +35,9 @@ CACHE_DURATION = 60 * 60 *24 * 7  # Cache for 7 days in seconds -> used for coun
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.contrib.gis.db.backends.postgis",
-        'HOST': config("DB_HOST"),
+        # TODO: "ENGINE": "django.contrib.gis.db.backends.postgis",
+        "ENGINE": "django.db.backends.postgresql",
+        'HOST': config("DB_HOSTNAME"),
         "NAME": config("DB_NAME"),
         "PORT": config("DB_PORT", cast=int),
         "USER": config("DB_USERNAME"),
