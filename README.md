@@ -62,3 +62,24 @@ Furthermore in web we replaced prorts by expose this allows the web service to b
 We created a docker-compose.prod.yml file for production.
 
 NB docker-compose.yml is used for development.
+
+## Deploying to a testserver
+
+See the wiki (How to run docker test environment on proxmox)
+on how to deploy docker on a proxomox-ubuntu test environment.
+
+The deploy.sh script can be used to automate the deployment.
+
+Make it executable:
+
+```bash
+chmod +x deploy.sh
+```
+
+You can now run this script to transfer your files and deploy the containers automatically:
+
+```bash
+./deploy.sh
+```
+
+Note: don't forget to change the variables in this cript.

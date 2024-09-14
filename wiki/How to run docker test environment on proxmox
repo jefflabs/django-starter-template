@@ -144,8 +144,7 @@ If you want to automate this process further, you can create a simple shell scri
 Example Shell Script (deploy.sh)
 Create a deploy.sh script on your Mac that automates copying the files and running Docker Compose:
 
-bash
-Code kopiëren
+```bash
 #!/bin/bash
 
 # Define variables
@@ -164,16 +163,19 @@ ssh $USER@$HOST << EOF
 EOF
 
 echo "Deployment complete."
+```
+
 Make it executable:
 
-bash
-Code kopiëren
+```bash
 chmod +x deploy.sh
+```
+
 You can now run this script to transfer your files and deploy the containers automatically:
 
-bash
-Code kopiëren
+```bash
 ./deploy.sh
+```
 
 ## 6. Test and Access Your Application
 
