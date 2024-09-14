@@ -1,8 +1,11 @@
 # version: "3.9"
+name: my-docker-project
 
 services:
   web:
     # container_name: web
+    image: my-app-image
+    container_name: my-app-container
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -47,7 +50,8 @@ services:
       - redis_data:/data
   
   celery:
-    # container_name: celery
+    image: my-app-image
+    container_name: my-celery-container
     build: .
     command: celery -A config worker -l info
     volumes:
@@ -58,6 +62,29 @@ services:
       - db
       - redis
       - web
+
+  flower:
+    image: my-app-image
+    container_name: my-flower-container
+    command: celery -A config flower --basic_auth=admin:mikdik
+    ports:
+      - "5555:5555"
+    env_file:
+      - ./.env
+    depends_on:
+      - redis
+
+  beat:
+    image: my-app-image
+    container_name: my-beat-container
+    command: celery -A config beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    volumes:
+      - .:/code
+    env_file:
+      - ./.env
+    depends_on:
+      - redis
+      - web  
 
 volumes:
   postgres_data:
