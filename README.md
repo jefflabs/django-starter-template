@@ -20,7 +20,6 @@ Status: tested and works
 * TODO: split .env file in a production and development file
 * TODO: create a seperate compose and entrypoint directory -> cleaner then everythin in the root
 * TODO: create seperate base, production and development requirement.txt files
-* TODO: add pgadmin4 service to docker-compose.yml
 * TODO: create home app -> and a home page includig header menu
 * TODO: add django allauth + pillow (for avatar image)
 
@@ -54,9 +53,9 @@ The script (entrypoint.sh) is there to ensure Postgres is healthy befor Django i
 
 We add celery for time-intensive asynchronuous tasks that can run in the background. So that the frontend is not waiting for these user requests. Redis is used as the message broker. We use redis since it can also be used as cache.
 
-## Hardeing Docker compose for production -> Gunicorn and Nginx
+## Gunicorn and Nginx
 
-We replaced Django's built-in webserver with Gunicorn. We added Nginx to act as a reverse proxy for Gunicorn and serve static files.
+We are hardeing Docker compose for production by replacing Django's built-in webserver with Gunicorn (also done for development). We added Nginx to act as a reverse proxy for Gunicorn and serve static files.
 
 Furthermore in web we replaced prorts by expose this allows the web service to be exposed to other servicres inside Docker but not to the host machine.
 
