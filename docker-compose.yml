@@ -4,10 +4,11 @@ services:
   web:
     # container_name: web
     build: .
-    # command: python manage.py runserver 0.0.0.0:8000
-    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
+      - static_volume:/code/staticfiles
+      - media_volume:/code/mediafiles
     env_file:
       - ./.env
     ports:
@@ -55,3 +56,5 @@ services:
 
 volumes:
   postgres_data:
+  static_volume:
+  media_volume:

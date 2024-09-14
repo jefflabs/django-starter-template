@@ -17,4 +17,19 @@ python manage.py migrate
 echo 'Collecting static files...'
 python manage.py collectstatic --no-input
 
+echo 'Creating superuser if not exists...'
+python manage.py shell <<EOF
+import os
+from django.contrib.auth.models import User
+
+superuser_username = os.getenv('DJANGO_SUPERUSER', 'admin')
+superuser_password = os.getenv('DJANGO_SUPERUSER_PASSWORD', 'adminpassword')
+
+if not User.objects.filter(username=superuser_username).exists():
+    User.objects.create_superuser(username=superuser_username, password=superuser_password)
+    print(f"Superuser '{superuser_username}' created successfully.")
+else:
+    print(f"Superuser '{superuser_username}' already exists.")
+EOF
+
 exec "$@"
