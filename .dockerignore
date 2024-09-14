@@ -1,3 +1,10 @@
-.venv
+.env
 .git
 .gitignore
+
+venv/
+Dockerfile
+migrations/
+__pychache__/
+db.sqlite
+.DS_store

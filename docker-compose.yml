@@ -40,6 +40,11 @@ services:
   redis:
     # container_name: redis
     image: redis:7
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
   
   celery:
     # container_name: celery
@@ -56,5 +61,6 @@ services:
 
 volumes:
   postgres_data:
+  redis_data:
   static_volume:
   media_volume:

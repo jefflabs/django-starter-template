@@ -51,7 +51,10 @@ The script (entrypoint.sh) is there to ensure Postgres is healthy befor Django i
 
 ## Celery and Redis
 
-We add celery for time-intensive asynchronuous tasks that can run in the background. So that the frontend is not waiting for these user requests. Redis is used as the message broker. We use redis since it can also be used as cache.
+We add celery for time-intensive asynchronuous tasks that can run in the background. So that the frontend is not waiting for these user requests. 
+
+* The package djago-celery-results is used to store and manage the results of Celery tasks in Django (see What is Django Celery results.md)
+* Redis is used as the message broker. We use redis since it can also be used as cache.
 
 ## Gunicorn and Nginx
 

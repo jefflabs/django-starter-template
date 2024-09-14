@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3rd party apps
+    'django-celery-results'
 ]
 
 MIDDLEWARE = [
@@ -117,4 +120,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Celery settings
 CELERY_BROKER_URL="redis://redis:6379/0"
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_EXTENDED = True
+
 REDIS_BACKEND="redis://redis:6379/0"
