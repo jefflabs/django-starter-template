@@ -60,4 +60,5 @@ We are hardeing Docker compose for production by replacing Django's built-in web
 Furthermore in web we replaced prorts by expose this allows the web service to be exposed to other servicres inside Docker but not to the host machine.
 
 We created a docker-compose.prod.yml file for production.
+
 NB docker-compose.yml is used for development.
