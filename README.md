@@ -15,12 +15,22 @@ This starter template consists of the following services:
 
 Status: tested and works
 
-TODOs:
+### TODOs
 
 * TODO: split .env file in a production and development file
 * TODO: create a seperate compose and entrypoint directory -> cleaner then everythin in the root
 * TODO: create seperate base, production and development requirement.txt files
 * TODO: add pgadmin4 service to docker-compose.yml
+* TODO: create home app -> and a home page includig header menu
+* TODO: add django allauth + pillow (for avatar image)
+
+### Getting the files
+
+Clone with git and remove git folder
+
+```bash
+git clone https://github.com/jseverijn3k/django-starter.git . && rm -rf .git
+```
 
 ## Split settings for different environments
 
