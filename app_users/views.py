@@ -6,7 +6,9 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.views import redirect_to_login
 from django.contrib import messages
-from .forms import *
+
+from app_users.models import Profile
+from app_users.forms import *
 
 def profile_view(request, username=None):
     if username:
@@ -16,7 +18,7 @@ def profile_view(request, username=None):
             profile = request.user.profile
         except:
             return redirect_to_login(request.get_full_path())
-    return render(request, 'a_users/profile.html', {'profile':profile})
+    return render(request, 'app_users/profile.html', {'profile':profile})
 
 
 @login_required
@@ -34,12 +36,12 @@ def profile_edit_view(request):
     else:
         onboarding = False
       
-    return render(request, 'a_users/profile_edit.html', { 'form':form, 'onboarding':onboarding })
+    return render(request, 'app_users/profile_edit.html', { 'form':form, 'onboarding':onboarding })
 
 
 @login_required
 def profile_settings_view(request):
-    return render(request, 'a_users/profile_settings.html')
+    return render(request, 'app_users/profile_settings.html')
 
 
 @login_required
@@ -90,4 +92,4 @@ def profile_delete_view(request):
         messages.success(request, 'Account deleted, what a pity')
         return redirect('home')
     
-    return render(request, 'a_users/profile_delete.html')
+    return render(request, 'app_users/profile_delete.html')
