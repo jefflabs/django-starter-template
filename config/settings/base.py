@@ -44,6 +44,18 @@ INSTALLED_APPS = [
     # 3rd party apps
     'django_celery_results',
     'django_celery_beat',
+    'django_htmx',
+    'django_cleanup.apps.CleanupConfig',
+
+    # Django allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # ... include the providers you want to enable:
+    # 'allauth.socialaccount.providers.google',
+
+    # own apps
+    'app_home',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +66,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # django_htmx middleware
+    'django_htmx.middleware.HtmxMiddleware',
+
+    # django-allauth account middleware:
+    "allauth.account.middleware.AccountMiddleware",
+
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -61,7 +80,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -2,11 +2,19 @@
 
 ## Overview
 
-This is a Django Dockerized Production-Ready starter template. Goals is to make life eas for develoeprs so that they can focus on development and business logic, by minimizing the hassle of setup and deployment.
+This is a Django Dockerized Production-Ready starter template. Goals is to make life easy for develoeprs so that they can focus on development and business logic, by minimizing the hassle of setup and deployment.
 
-This starter template consists of the following services:
+Django app with:
 
-* Django app
+* a static homepage
+* dynamic profile pages
+* allauth for user authentication
+* settings page (using Htmx)
+* 404 page
+
+Furthermore, the starter template consists of the following services to create both a development and production environment:
+
+* Split settings and Environment variables
 * PostgreSQL database
 * Redis Cache
 * Celery and Redis Messagebroker
@@ -15,6 +23,7 @@ This starter template consists of the following services:
 
 Status: tested and works
 
+
 ### TODOs
 
 * TODO: split .env file in a production and development file
@@ -22,6 +31,7 @@ Status: tested and works
 * TODO: create seperate base, production and development requirement.txt files
 * TODO: create home app -> and a home page includig header menu
 * TODO: add django allauth + pillow (for avatar image)
+* TODO: whitenoise for production
 
 ### Getting the files
 
@@ -30,6 +40,22 @@ Clone with git and remove git folder
 ```bash
 git clone https://github.com/jseverijn3k/django-starter.git . && rm -rf .git
 ```
+
+## Django app
+
+Th Django starter project comes with a Django starter app consisting of
+
+* a static homepage
+* dynamic profile pages
+* allauth for user authentication
+* settings page (using Htmx)
+* 404 page
+
+This way you can fast track your new app. Since most apps need a static homepage and user onboarding and a user profile page.
+
+Each of these items can be changed easily.
+
+see Django starter app.md for more information
 
 ## Split settings for different environments
 

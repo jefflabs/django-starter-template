@@ -1,5 +1,9 @@
-celery
 Django
+pillow
+django-cleanup
+django-allauth
+django-htmx
+celery
 gunicorn
 psycopg2-binary
 python-decouple
