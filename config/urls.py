@@ -21,6 +21,7 @@ from django.conf import settings
 
 # from app_users.views import profile_view
 from app_home.views import *
+from app_users.views import profile_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,8 +30,8 @@ urlpatterns = [
     # path('users/', include(('app_users.urls','users'),namespace='users')), 
 
     path('', include('app_home.urls')),
-    # path('profile/', include('app_users.urls')),
-    # path('@<username>/', profile_view, name="profile"),
+    path('profile/', include('app_users.urls')),
+    path('@<username>/', profile_view, name="profile"),
 ]
 
 # Only used when DEBUG=True, whitenoise can serve files when DEBUG=False
