@@ -5,10 +5,11 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Media and static file URLS
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, '../', "mediafiles")
+MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
-STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, '../', "staticfiles")
+STATIC_URL = '/static/'
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),  # Add your project's static directory here
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Where static files are collected
 
 # Database
 # Replaced the standard sqlite backend for a postgresql -> postgis database
