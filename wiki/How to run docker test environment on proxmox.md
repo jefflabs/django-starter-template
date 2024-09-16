@@ -74,6 +74,7 @@ Next, copy your public key to the Ubuntu VM for passwordless login:
 
 ```bash
 ssh-copy-id your-username@192.168.1.146
+ssh-copy-id jeffrey@192.168.1.107
 ```
 
 You should now be able to SSH into your VM without entering a password.
