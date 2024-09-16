@@ -1,7 +1,11 @@
 from .base import *
 
-# Email backend for testing
+# Email backend for testing (onboarding flow)
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# onboarding settings
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
 
 # Media and static file URLS
 MEDIA_URL = "/media/"

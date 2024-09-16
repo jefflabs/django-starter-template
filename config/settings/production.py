@@ -1,12 +1,15 @@
 from .base import *
 
-# Email backend for production -> NOTE: you need a mailgun account and add EMAIL_USER and EMAIL_PASSWORD to .env file
+# Email backend (e.g. for onboarding flow) for production -> NOTE: you need a mailgun account and add EMAIL_USER and EMAIL_PASSWORD to .env file
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.mailgun.org"
 EMAIL_PORT = 587
 EMAIL_HOST_USER = config("EMAIL_USER")
 EMAIL_HOST_PASSWORD = config("EMAIL_PASSWORD")
 EMAIL_USE_TLS = True
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
 
 # Media and static file URLS
 MEDIA_URL = "/media/"
