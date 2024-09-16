@@ -12,3 +12,4 @@ django-celery-results
 flower
 django-celery-beat
 django-admin-honeypot-updated-2021
+django-resized

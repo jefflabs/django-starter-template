@@ -27,12 +27,11 @@ from decouple import config
 ADMIN_URL = config("ADMIN_URL", default='admin') 
 
 urlpatterns = [
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path(f'{ADMIN_URL}/', admin.site.urls),
 
     path('accounts/', include('allauth.urls')),
     # path('users/', include(('app_users.urls','users'),namespace='users')), 
-    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-    path('secret/', admin.site.urls),
     
     path('', include('app_home.urls')),
     path('profile/', include('app_users.urls')),

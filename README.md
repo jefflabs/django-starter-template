@@ -1,5 +1,7 @@
 # django-starter-template
 
+## Status: tested and works
+
 ## Overview
 
 This is a Django Dockerized Production-Ready starter template. Goals is to make life easy for develoeprs so that they can focus on development and business logic, by minimizing the hassle of setup and deployment.
@@ -20,8 +22,11 @@ Furthermore, the starter template consists of the following services to create b
 * Celery and Redis Messagebroker
 * Gunicorn
 * Nginx
+  
+End even more is done:
 
-Status: tested and works
+* Security -> django admin URL
+* Optimisations -> auto image resizing
 
 
 ### TODOs
@@ -68,6 +73,7 @@ We create a settings folder and a split between settings files
 ## Environment Variables
 
 An .env file that allows you to describe different environments (production and development)
+we use the decouple package to read from the .env files
 
 ## PostgreSQL Database
 
@@ -111,4 +117,17 @@ You can now run this script to transfer your files and deploy the containers aut
 ./deploy.sh
 ```
 
-Note: don't forget to change the variables in this cript.
+Note: don't forget to change the variables in this script.
+
+## Security
+
+### Admin url
+
+We create an environment variable so we can choose our own admin url (e.g. yoir_domain/theboss)
+Om top of that we use the package django-honeypot-updated-2021 to create a fake your_doman/admin page and we log all login attempts in the database. See also ->  https://pypi.org/project/django-admin-honeypot-updated-2021/
+
+## Optimisaions
+
+### Resizing images before saving them
+
+We resize images to the correct format before saving them (e.g. avatars only need to be xxxkb). This way we avoid users to upload images that are to big and slow down our service. We use the django package: django-resized. See also -> https://pypi.org/project/django-resized/
