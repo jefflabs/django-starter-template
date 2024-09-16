@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     # 3rd party apps
     'django_celery_results',
     'django_celery_beat',
+    
     'django_htmx',
+    
     'django_cleanup.apps.CleanupConfig',
 
     # Django allauth
