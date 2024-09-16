@@ -15,6 +15,13 @@ import os
 from pathlib import Path
 from decouple import config, Csv
 
+# Determine which .env file to use based on DJANGO_ENV environment variable
+env_file = '.env'
+if os.getenv('DJANGO_ENV') == 'production':
+    env_file = '.env.prod'
+else:
+    env_file = '.env.test'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # print(f"Base dir is: {BASE_DIR}")

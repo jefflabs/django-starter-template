@@ -16,7 +16,7 @@ services:
     #   - DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD}
     #   - DJANGO_SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL}
     env_file:
-      - ./.env
+      - ./.env.test
     ports:
       - 8000:8000
     depends_on:
@@ -60,7 +60,7 @@ services:
     volumes:
       - .:/code
     env_file:
-      - ./.env
+      - ./.env.test
     depends_on:
       - db
       - redis
@@ -73,7 +73,7 @@ services:
     ports:
       - "5555:5555"
     env_file:
-      - ./.env
+      - ./.env.test
     depends_on:
       - redis
 
@@ -84,7 +84,7 @@ services:
     volumes:
       - .:/code
     env_file:
-      - ./.env
+      - ./.env.test
     depends_on:
       - redis
       - web  

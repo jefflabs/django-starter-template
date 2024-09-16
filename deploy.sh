@@ -13,7 +13,8 @@ rsync -av --files-from=<(git ls-files) ./ $USER@$HOST:$TARGET_DIR
 # Step 2: SSH into the Ubuntu VM and build/run the containers
 ssh $USER@$HOST << EOF
   cd $TARGET_DIR
-  docker-compose build
+  export DJANGO_ENV=test
+  docker compose -f docker-compose.test.yml build
   docker-compose up -d
 EOF
 
