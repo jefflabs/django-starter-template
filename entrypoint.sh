@@ -29,11 +29,12 @@ from app_users.models import Profile  # Import your Profile model
 User = get_user_model()
 
 superuser_username = os.getenv('DJANGO_SUPERUSER', 'admin')
-superuser_password = os.getenv('DJANGO_SUPERUSER_PASSWORD', 'adminpassword')
+superuser_email = os.getenv('DJANGO_SUPERUSER_EMAIL', 'admin@admin.com')
+superuser_password = os.getenv('DJANGO_SUPERUSER_PASSWORD', 'mikdik')
 
 # Create superuser if not exists
 if not User.objects.filter(username=superuser_username).exists():
-    superuser = User.objects.create_superuser(username=superuser_username, password=superuser_password)
+    superuser = User.objects.create_superuser(username=superuser_username, password=superuser_password, email=superuser_email)
     print(f"Superuser '{superuser_username}' created successfully.")
 
     # Manually create the profile for the superuser

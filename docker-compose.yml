@@ -11,6 +11,10 @@ services:
       - .:/code
       - static_volume:/code/staticfiles
       - media_volume:/code/mediafiles
+    # environment:
+    #   - DJANGO_SUPERUSER=${DJANGO_SUPERUSER}
+    #   - DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD}
+    #   - DJANGO_SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL}
     env_file:
       - ./.env
     ports:
