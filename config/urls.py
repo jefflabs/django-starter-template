@@ -31,7 +31,9 @@ urlpatterns = [
 
     path('accounts/', include('allauth.urls')),
     # path('users/', include(('app_users.urls','users'),namespace='users')), 
-
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('secret/', admin.site.urls),
+    
     path('', include('app_home.urls')),
     path('profile/', include('app_users.urls')),
     path('@<username>/', profile_view, name="profile"),

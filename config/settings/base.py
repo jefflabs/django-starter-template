@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'django_celery_beat',
     
     'django_htmx',
+
+    # https://pypi.org/project/django-admin-honeypot-updated-2021/
+    'admin_honeypot',
     
     'django_cleanup.apps.CleanupConfig',
 
@@ -150,7 +153,8 @@ LOGIN_REDIRECT_URL = '/'
 
 ACCOUNT_SIGNUP_REDIRECT_URL = "{% url 'account_signup' %}?next={% url 'profile-onboarding' %}"
 ADMIN_URL = config("ADMIN_URL", default='admin') 
-ACCOUNT_USERNAME_BLACKLIST = [ADMIN_URL, 'accounts', 'profile','category','post','inbox']
+ACCOUNT_USERNAME_BLACKLIST = [ADMIN_URL, 'admin', 'accounts', 'profile', 'category', 'post', 'inbox']
+
 # Celery settings
 CELERY_BROKER_URL="redis://redis:6379/0"
 CELERY_RESULT_BACKEND = 'django-db'
