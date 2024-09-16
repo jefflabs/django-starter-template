@@ -17,7 +17,7 @@ from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-print(f"Base dir is: {BASE_DIR}")
+# print(f"Base dir is: {BASE_DIR}")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -149,7 +149,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 
 ACCOUNT_SIGNUP_REDIRECT_URL = "{% url 'account_signup' %}?next={% url 'profile-onboarding' %}"
-
+ADMIN_URL = config("ADMIN_URL", default='admin') 
+ACCOUNT_USERNAME_BLACKLIST = [ADMIN_URL, 'accounts', 'profile','category','post','inbox']
 # Celery settings
 CELERY_BROKER_URL="redis://redis:6379/0"
 CELERY_RESULT_BACKEND = 'django-db'

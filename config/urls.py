@@ -23,8 +23,11 @@ from django.conf import settings
 from app_home.views import *
 from app_users.views import profile_view
 
+from decouple import config
+ADMIN_URL = config("ADMIN_URL", default='admin') 
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(f'{ADMIN_URL}/', admin.site.urls),
 
     path('accounts/', include('allauth.urls')),
     # path('users/', include(('app_users.urls','users'),namespace='users')), 
