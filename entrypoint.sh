@@ -24,7 +24,7 @@ echo 'Creating superuser if not exists...'
 python manage.py shell <<EOF
 import os
 from django.contrib.auth import get_user_model
-from app.models import Profile  # Import your Profile model
+from app_users.models import Profile  # Import your Profile model
 
 User = get_user_model()
 

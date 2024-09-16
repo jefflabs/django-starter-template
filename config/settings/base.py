@@ -76,6 +76,11 @@ MIDDLEWARE = [
 
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
@@ -139,7 +144,10 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGION_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_SIGNUP_REDIRECT_URL = "{% url 'account_signup' %}?next={% url 'profile-onboarding' %}"
+
 # Celery settings
 CELERY_BROKER_URL="redis://redis:6379/0"
 CELERY_RESULT_BACKEND = 'django-db'
