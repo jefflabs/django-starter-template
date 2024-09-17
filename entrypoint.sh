@@ -17,6 +17,12 @@ python manage.py makemigrations
 echo 'Running migrations...'
 python manage.py migrate
 
+# Create static and media directories if they don't exist
+echo 'Ensuring static and media directories exist...'
+mkdir -p /code/staticfiles
+mkdir -p /code/mediafiles
+
+# Collect static files
 echo 'Collecting static files...'
 python manage.py collectstatic --no-input
 

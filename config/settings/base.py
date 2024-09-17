@@ -15,12 +15,6 @@ import os
 from pathlib import Path
 from decouple import config, Csv
 
-# Determine which .env file to use based on DJANGO_ENV environment variable
-env_file = '.env'
-if os.getenv('DJANGO_ENV') == 'production':
-    env_file = '.env.prod'
-else:
-    env_file = '.env.test'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -158,10 +152,14 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 
 ACCOUNT_SIGNUP_REDIRECT_URL = "{% url 'account_signup' %}?next={% url 'profile-onboarding' %}"
 ADMIN_URL = config("ADMIN_URL", default='admin') 
 ACCOUNT_USERNAME_BLACKLIST = [ADMIN_URL, 'admin', 'accounts', 'profile', 'category', 'post', 'inbox']
+
+SITE_ID = 1
 
 # Celery settings
 CELERY_BROKER_URL="redis://redis:6379/0"

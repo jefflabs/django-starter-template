@@ -1,31 +1,54 @@
 # version: "3.9"
+name: prod-docker-project
 
 services:
   web:
+    image: prod-app-image
+    container_name: prod-app-container
     build: .
-    restart: always
-    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
-    env_file:
-      - ./.env.prod
-    expose:
-      - 8000
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - static_volume:/code/staticfiles
-      - media_volume:/code/mediafiles
+      - .:/code
+      - ./staticfiles:/code/staticfiles
+      - ./mediafiles:/code/mediafiles
+      # - static_volume:/code/staticfiles
+      # - media_volume:/code/mediafiles
+    env_file:
+      - ./.env
+    # ports:
+    #   - 8000:8000
     depends_on:
       - redis
       - db
   db:
+    container_name: prod-postgres-container
     image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - ./.env.prod
+      - ./.env
     # environment:
     #   - POSTGRES_USER=${DB_USERNAME}
     #   - POSTGRES_PASSWORD=${DB_PASSWORD}
     #   - POSTGRES_DB=${DB_NAME}
+
+  pgadmin:
+    container_name: prod-pgadmin4-container
+    image: dpage/pgadmin4:latest
+    env_file:
+      - ./.env
+    # environment:
+    #   - PGADMIN_DEFAULT_EMAIL=${PGADMIN_MAIL}
+    #   - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PW}
+    ports:
+      - "5050:80"
+    restart: always
+    depends_on:
+      - db
+  
   redis:
+    # container_name: redis
+    container_name: prod-redis-container
     image: redis:7
     ports:
       - "6379:6379"
@@ -34,27 +57,54 @@ services:
       - redis_data:/data
   
   celery:
+    image: prod-app-image
+    container_name: prod-celery-container
     build: .
-    restart: always
     command: celery -A config worker -l info
     volumes:
       - .:/code
     env_file:
-      - ./.env.prod
+      - ./.env
     depends_on:
       - db
       - redis
       - web
+
+  flower:
+    image: prod-app-image
+    container_name: prod-flower-container
+    command: celery -A config flower --basic_auth=admin:mikdik
+    ports:
+      - "5555:5555"
+    env_file:
+      - ./.env
+    depends_on:
+      - redis
+
+  beat:
+    image: prod-app-image
+    container_name: prod-beat-container
+    command: celery -A config beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    volumes:
+      - .:/code
+    env_file:
+      - ./.env
+    depends_on:
+      - redis
+      - web  
   nginx:
+      container_name: prod-nginx-container
       build: ./nginx
       restart: always
       env_file:
-        - ./.env.prod
-      # ports:
-      #   - ${NGINX_PORT}:80
+        - ./.env
+      ports:
+        - "80:80"
       volumes:
-        - static_volume:/code/staticfiles
-        - media_volume:/code/mediafiles
+        - ./staticfiles:/code/staticfiles  # Point to the correct static directory
+        - ./mediafiles:/code/mediafiles   
+        # - ./static_volume:/code/staticfiles
+        # - ./media_volume:/code/mediafiles
       depends_on:
         - web
 
