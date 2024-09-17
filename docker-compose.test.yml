@@ -4,7 +4,7 @@ name: my-docker-project
 services:
   web:
     image: my-app-image
-    container_name: my-app-container
+    container_name: my-app
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -20,6 +20,7 @@ services:
       - db
   db:
     # container_name: postgres
+    container_name: my-db
     image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data/
@@ -31,6 +32,7 @@ services:
     #   - POSTGRES_DB=${DB_NAME}
 
   pgadmin:
+    container_name: my-pgadmin4
     image: dpage/pgadmin4:latest
     env_file:
       - ./.env.test
@@ -44,7 +46,7 @@ services:
       - db
   
   redis:
-    # container_name: redis
+    container_name: my-redis
     image: redis:7
     ports:
       - "6379:6379"
@@ -54,7 +56,7 @@ services:
   
   celery:
     image: my-app-image
-    container_name: my-celery-container
+    container_name: my-celery
     build: .
     command: celery -A config worker -l info
     volumes:
@@ -68,7 +70,7 @@ services:
 
   flower:
     image: my-app-image
-    container_name: my-flower-container
+    container_name: my-flower
     command: celery -A config flower --basic_auth=admin:mikdik
     ports:
       - "5555:5555"
@@ -79,7 +81,7 @@ services:
 
   beat:
     image: my-app-image
-    container_name: my-beat-container
+    container_name: my-beat
     command: celery -A config beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
     volumes:
       - .:/code
