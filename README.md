@@ -73,7 +73,7 @@ We create a settings folder and a split between settings files
 ## Environment Variables
 
 An .env file that allows you to describe different environments (production and development)
-we use the decouple package to read from the .env files
+we use the decouple package to read from the .env files -> see also "What is Python Decouple.md"
 
 ## PostgreSQL Database
 
