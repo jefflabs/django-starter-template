@@ -54,6 +54,12 @@ CACHES = {
 
 CACHE_DURATION = 60 * 60 *24 * 7  # Cache for 7 days in seconds -> used for country list and detail pages
 
+# https://github.com/dizballanze/django-admin-env-notice?tab=readme-ov-file
+ENVIRONMENT_NAME = "Production server"
+ENVIRONMENT_COLOR = "#FF2222"
+ENVIRONMENT_FLOAT = True
+ENVIRONMENT_SHOW_TO_UNAUTHENTICATED = False
+
 
 # # Database
 # # Replaced the standard sqlite backend for a postgresql -> postgis database

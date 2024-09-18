@@ -36,6 +36,9 @@ CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
+    # https://github.com/dizballanze/django-admin-env-notice?tab=readme-ov-file
+    'django_admin_env_notice',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -61,6 +64,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # ... include the providers you want to enable:
     # 'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
 
     # own apps
     'app_home',
@@ -75,19 +79,34 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    
     # django_htmx middleware
     'django_htmx.middleware.HtmxMiddleware',
 
-    # django-allauth account middleware:
+    # django-allauth account middleware
     "allauth.account.middleware.AccountMiddleware",
 
 ]
 
+# allauth authentication backends
 AUTHENTICATION_BACKENDS = [
+     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+# allauth provider specific settings
+# SOCIALACCOUNT_PROVIDERS = {
+#     'github': {
+#         'APP': {
+#             'client_id': '123',
+#             'secret': '456',
+#             'key': ''
+#         }
+#     }
+# }
 
 ROOT_URLCONF = 'config.urls'
 
@@ -103,6 +122,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "django_admin_env_notice.context_processors.from_settings",
+
             ],
         },
     },

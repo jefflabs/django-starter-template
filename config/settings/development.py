@@ -39,3 +39,10 @@ DATABASES = {
         'CONN_MAX_AGE': 600,  # Keep connections open for 10 minutes
     }
 }
+
+# https://github.com/dizballanze/django-admin-env-notice?tab=readme-ov-file
+ENVIRONMENT_NAME = "Test server"
+ENVIRONMENT_COLOR = "#35892a"
+ENVIRONMENT_FLOAT = True
+
+

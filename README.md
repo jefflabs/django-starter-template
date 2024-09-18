@@ -131,3 +131,8 @@ Om top of that we use the package django-honeypot-updated-2021 to create a fake 
 ### Resizing images before saving them
 
 We resize images to the correct format before saving them (e.g. avatars only need to be xxxkb). This way we avoid users to upload images that are to big and slow down our service. We use the django package: django-resized. See also -> https://pypi.org/project/django-resized/
+
+### Make django safer by visually distinguishing environments in Django Admin
+
+Visually distinguish environments in Django Admin. Based on great advice from post: 5 ways to make Django Admin safer by hakibenita.
+We use the package django-admin-env-notice. See also -> https://github.com/dizballanze/django-admin-env-notice?tab=readme-ov-file

@@ -14,3 +14,5 @@ flower
 django-celery-beat
 django-admin-honeypot-updated-2021
 django-resized
+requests
+django-admin-env-notice
