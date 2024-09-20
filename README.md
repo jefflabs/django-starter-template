@@ -31,11 +31,8 @@ End even more is done:
 
 ### TODOs
 
-* TODO: split .env file in a production and development file
 * TODO: create a seperate compose and entrypoint directory -> cleaner then everythin in the root
 * TODO: create seperate base, production and development requirement.txt files
-* TODO: create home app -> and a home page includig header menu
-* TODO: add django allauth + pillow (for avatar image)
 * TODO: whitenoise for production
 
 ### Getting the files
