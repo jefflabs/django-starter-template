@@ -31,6 +31,7 @@ End even more is done:
 
 ### TODOs
 
+* TODO: apply this: https://www.youtube.com/watch?v=F-9KWQByeU0
 * TODO: create a seperate compose and entrypoint directory -> cleaner then everythin in the root
 * TODO: create seperate base, production and development requirement.txt files
 * TODO: whitenoise for production

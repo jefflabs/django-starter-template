@@ -18,7 +18,7 @@ ssh $USER@$HOST << EOF
   cp docker-compose.test.yml docker-compose.yml
   
   # Rename .env.test to .env
-  cp .env.prod .env
+  cp .env.test .env
 
   docker-compose -f docker-compose.yml build
   docker-compose up -d
