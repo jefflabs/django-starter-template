@@ -43,6 +43,7 @@ End even more is done:
 Clone with git and remove git folder
 
 ```bash
+git clone git@github.com:jefflabs/django-starter-template.git . && rm -rf .git
 git clone https://github.com/jseverijn3k/django-starter.git . && rm -rf .git
 ```
 
